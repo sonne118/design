@@ -3,8 +3,20 @@
   <Namespace>System.Net</Namespace>
 </Query>
 
+var urls = new[] { "http://www.bing.com", "http://www.excella.com", "http://www.google.com" };
 
-// Begin - End 
+// How to execute all the downloads in parallel?
+// var downloads = urls.Select(DownloadPage).ToArray();
+
+var downloads = urls.Select(DownloadPage);
+
+foreach (var result in downloads)
+{	
+	while (result.IsCompleted != true)
+	{
+		UpdateUserInterface();
+	}	
+}
 
 IAsyncResult DownloadPage(string url)
 {
@@ -38,8 +50,14 @@ void ResponseCallback(IAsyncResult iar)
 			temp.Seek(0, SeekOrigin.Begin);
 			var html = new StreamReader(temp).ReadToEnd();
 			var title = regTitle.Match(html).Groups[1].Value;
-			// ?? return Tuple.Create(title, html.Length);
+			// return Tuple.Create(title, html.Length);
+			
+			Console.WriteLine("{0} (length {1})", title, html.Length);
 		}
 	}
 }
 
+static void UpdateUserInterface()
+{	
+	Console.Write(".");
+}
