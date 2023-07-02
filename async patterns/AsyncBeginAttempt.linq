@@ -59,5 +59,8 @@ void ResponseCallback(IAsyncResult iar)
 
 static void UpdateUserInterface()
 {	
+	Task.Delay(5000);
 	Console.Write(".");
 }
+
+
