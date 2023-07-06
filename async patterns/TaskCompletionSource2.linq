@@ -1,4 +1,3 @@
-
 public Task<int> DoSomethingAsync()
 {
 	var tcs = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
