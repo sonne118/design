@@ -1,9 +1,3 @@
-<Query Kind="Program">
-  <Namespace>System.Threading.Tasks</Namespace>
-  <Namespace>System.Net</Namespace>
-</Query>
-
-
 async Task Main()
 {
 		List<string> urlList = new List<string>
