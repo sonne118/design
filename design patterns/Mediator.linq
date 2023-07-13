@@ -62,17 +62,11 @@ public class ManagerMediator : Mediator
 	public Colleague Programmer { get; set; }
 	public Colleague Tester { get; set; }
 	public override void Send(string msg, Colleague colleague)
-	{
-		// если отправитель - заказчик, значит есть новый заказ
-		// отправляем сообщение программисту - выполнить заказ
+	{		
 		if (Customer == colleague)
-			Programmer.Notify(msg);
-		// если отправитель - программист, то можно приступать к тестированию
-		// отправляем сообщение тестеру
+			Programmer.Notify(msg);		
 		else if (Programmer == colleague)
-			Tester.Notify(msg);
-		// если отправитель - тест, значит продукт готов
-		// отправляем сообщение заказчику
+			Tester.Notify(msg);		
 		else if (Tester == colleague)
 			Customer.Notify(msg);
 	}
